@@ -18,8 +18,6 @@ type DeepReadonly<T> = T extends Function
 
 import type { Equal, Expect } from "@type-challenges/utils";
 
-type a = DeepReadonly<() => 22>;
-
 type cases = [
   Expect<Equal<DeepReadonly<X1>, Expected1>>,
   Expect<Equal<DeepReadonly<X2>, Expected2>>
