@@ -9,6 +9,5 @@ export type { FunctionType } from "./FunctionType.type";
 export type { IsValue } from "./IsValue.type";
 export type { IsTruphy } from "./IsTruthy.type";
 export type { ReverseBoolean } from "./ReverseBoolean.type";
-export type { IsNever } from "./IsNever.type";
 export type { ToArray } from "./ToArray.type";
 export type { RemoveFromArrayBy } from "./RemoveFromArrayBy.type";
