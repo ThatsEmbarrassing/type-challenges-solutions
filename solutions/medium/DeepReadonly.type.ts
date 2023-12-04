@@ -6,19 +6,17 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/00009-medium-deep-readonly/README.md
 */
 
-type DeepReadonly<T> = T extends Function
-  ? T
-  : T extends object | unknown[]
-  ? {
-      +readonly [Key in keyof T]: DeepReadonly<T[Key]>;
-    }
-  : T;
+type DeepReadonly<T extends object | unknown[]> = {
+  +readonly [Key in keyof T]: T[Key] extends Function
+    ? T[Key]
+    : T[Key] extends object | unknown[]
+    ? DeepReadonly<T[Key]>
+    : T[Key];
+};
 
 // #=============================================
 
 import type { Equal, Expect } from "@type-challenges/utils";
-
-type a = DeepReadonly<() => 22>;
 
 type cases = [
   Expect<Equal<DeepReadonly<X1>, Expected1>>,

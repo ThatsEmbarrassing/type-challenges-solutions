@@ -7,20 +7,15 @@
 import type { Unshift } from "@easy/Unshift.type";
 import type { IsNever } from "./IsNever.type";
 
-export type Permutation<Union, Item = Union> = Item extends Item
-  ? PermuteItem<Union, Item>
+export type Permutation<T, K = T> = IsNever<T> extends true
+  ? []
+  : K extends K
+  ? Unshift<Permutation<Exclude<T, K>>, K>
   : never;
-type PermuteItem<
-  Union,
-  Item,
-  Rest = Exclude<Union, Item>
-> = IsNever<Rest> extends true ? [Item] : Unshift<Permutation<Rest>, Item>;
 
 // #=============================================
 
 import type { Equal, Expect } from "@type-challenges/utils";
-
-type a = Permutation<never>;
 
 type cases = [
   Expect<Equal<Permutation<"A">, ["A"]>>,
@@ -47,8 +42,5 @@ type cases = [
     >
   >,
   Expect<Equal<Permutation<boolean>, [false, true] | [true, false]>>,
-
-  // For a while I don't know how to fix this error. Maybe later.
-  // @ts-expect-error
   Expect<Equal<Permutation<never>, []>>
 ];

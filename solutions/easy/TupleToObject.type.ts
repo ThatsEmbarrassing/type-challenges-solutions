@@ -1,4 +1,4 @@
-import type { ObjectKeyType } from "@/utils";
+import type { ObjectKeyType } from "@/constants";
 
 /*
   Given an array, transform it into an object type and the key/value must be in the provided array.

@@ -3,11 +3,9 @@
 
     https://github.com/type-challenges/type-challenges/blob/main/questions/00106-medium-trimleft/README.md
 */
+import type { SpacedString } from "@/constants";
 
-export type TrimLeft<T extends string> = T extends
-  | ` ${infer P}`
-  | `\t${infer P}`
-  | `\n${infer P}`
+export type TrimLeft<T extends string> = T extends `${SpacedString}${infer P}`
   ? TrimLeft<P>
   : T;
 

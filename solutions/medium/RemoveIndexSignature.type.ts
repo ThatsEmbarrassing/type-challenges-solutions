@@ -4,7 +4,10 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/01367-medium-remove-index-signature/README.md
 */
 
-import type { IsKey, ObjectKeyType } from "@/utils";
+import type { IsKey } from "@/utils";
+
+import type { ObjectKeyType } from "@/constants";
+
 import type { If } from "@easy/If.type";
 
 type ReturnOnlyKey<T extends ObjectKeyType> = If<IsKey<T>, T, never>;

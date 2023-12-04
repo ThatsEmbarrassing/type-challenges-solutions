@@ -6,9 +6,10 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/02757-medium-partialbykeys/README.md
 */
 
-type PartialByKeys<T extends object, K extends keyof T = keyof T> = Omit<
-  Omit<T, K> & Partial<Pick<T, K & keyof T>>,
-  never
+import type { Copy } from "@/utils";
+
+type PartialByKeys<T extends object, K extends keyof T = keyof T> = Copy<
+  Omit<T, K> & Partial<Pick<T, K & keyof T>>
 >;
 
 // #=============================================

@@ -1,3 +1,3 @@
-export type IsDigit<T extends number> = number extends T & number
-  ? false
-  : true;
+import type { IsValue } from "./IsValue.type";
+
+export type IsDigit<T extends number> = IsValue<number, T>;

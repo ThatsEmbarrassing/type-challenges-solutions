@@ -6,9 +6,10 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/02759-medium-requiredbykeys/README.md
 */
 
-type RequiredByKeys<T extends object, K extends keyof T = keyof T> = Omit<
-  Omit<T, K> & Required<Pick<T, K>>,
-  never
+import type { Copy } from "@/utils";
+
+type RequiredByKeys<T extends object, K extends keyof T = keyof T> = Copy<
+  Omit<T, K> & Required<Pick<T, K>>
 >;
 
 // #=============================================

@@ -1,3 +1,3 @@
-export type IsSymbol<T extends symbol> = symbol extends T & symbol
-  ? false
-  : true;
+import type { IsValue } from "./IsValue.type";
+
+export type IsSymbol<T extends symbol> = IsValue<symbol, T>;

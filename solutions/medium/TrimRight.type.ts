@@ -4,10 +4,9 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/04803-medium-trim-right/README.md
 */
 
-export type TrimRight<T extends string> = T extends
-  | `${infer P} `
-  | `${infer P}\t`
-  | `${infer P}\n`
+import { SpacedString } from "@/constants";
+
+export type TrimRight<T extends string> = T extends `${infer P}${SpacedString}`
   ? TrimRight<P>
   : T;
 

@@ -4,7 +4,7 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/00599-medium-merge/README.md
 */
 
-type Merge<T extends object, L extends object> = {
+export type Merge<T extends object, L extends object> = {
   [Key in keyof T | keyof L]: Key extends keyof L ? L[Key] : T[Key & keyof T];
 };
 
@@ -33,5 +33,3 @@ type cases = [
     >
   >
 ];
-
-export {};

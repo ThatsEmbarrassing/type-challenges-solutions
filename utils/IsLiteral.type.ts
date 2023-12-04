@@ -1,3 +1,3 @@
-export type IsLiteral<T extends string> = string extends T & string
-  ? false
-  : true;
+import type { IsValue } from "./IsValue.type";
+
+export type IsLiteral<T extends string> = IsValue<string, T>;
