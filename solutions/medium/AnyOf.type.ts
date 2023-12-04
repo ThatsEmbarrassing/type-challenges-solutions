@@ -6,10 +6,10 @@
 
 import type { If } from "@easy/If.type";
 
-import type { IsTruphy } from "@/utils";
+import type { IsTruthy } from "@/utils";
 
 type AnyOf<T extends readonly [...unknown[]]> = T extends [infer F, ...infer L]
-  ? If<IsTruphy<F>, true, AnyOf<L>>
+  ? If<IsTruthy<F>, true, AnyOf<L>>
   : false;
 
 // #=============================================

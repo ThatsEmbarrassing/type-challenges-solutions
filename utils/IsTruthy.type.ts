@@ -22,7 +22,7 @@ type IsTruphyValue<T> = IsTrythyNumber<T> &
   IsTrythyObject<T> &
   IsTrythyString<T>;
 
-export type IsTruphy<T> = T extends Truphy
+export type IsTruthy<T> = T extends Truphy
   ? [IsTruphyValue<T>] extends [never]
     ? false
     : true
