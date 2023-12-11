@@ -4,10 +4,12 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/02688-medium-startswith/README.md
 */
 
-export type StartsWith<
-  T extends string,
-  S extends string
-> = T extends `${S}${string}` ? true : false;
+import type { Extends } from "@/utils";
+
+export type StartsWith<T extends string, S extends string> = Extends<
+  T,
+  `${S}${string}`
+>;
 
 // #=============================================
 

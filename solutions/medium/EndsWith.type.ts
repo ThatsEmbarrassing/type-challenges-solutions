@@ -4,9 +4,9 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/02693-medium-endswith/README.md
 */
 
-type EndsWith<T extends string, S extends string> = T extends `${string}${S}`
-  ? true
-  : false;
+import type { Extends } from "@/utils";
+
+type EndsWith<T extends string, S extends string> = Extends<T, `${string}${S}`>;
 
 // #=============================================
 

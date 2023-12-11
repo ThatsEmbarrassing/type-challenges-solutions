@@ -6,12 +6,18 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/00009-medium-deep-readonly/README.md
 */
 
-type DeepReadonly<T extends object | unknown[]> = {
-  +readonly [Key in keyof T]: T[Key] extends Function
-    ? T[Key]
-    : T[Key] extends object | unknown[]
-    ? DeepReadonly<T[Key]>
-    : T[Key];
+import type { If } from "@easy/If.type";
+
+import type { Extends } from "@/utils";
+
+import type { Iterable } from "@/constants";
+
+type DeepReadonly<T extends Iterable> = {
+  +readonly [Key in keyof T]: If<
+    Extends<T[Key], Function>,
+    T[Key],
+    If<Extends<T[Key], Iterable>, DeepReadonly<T[Key] & {}>, T[Key]>
+  >;
 };
 
 // #=============================================

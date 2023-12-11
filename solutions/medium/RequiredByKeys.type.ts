@@ -8,9 +8,10 @@
 
 import type { Copy } from "@/utils";
 
-type RequiredByKeys<T extends object, K extends keyof T = keyof T> = Copy<
-  Omit<T, K> & Required<Pick<T, K>>
->;
+export type RequiredByKeys<
+  T extends object,
+  K extends keyof T = keyof T
+> = Copy<Omit<T, K> & Required<Pick<T, K>>>;
 
 // #=============================================
 
@@ -43,5 +44,3 @@ type cases = [
   // @ts-expect-error
   Expect<Equal<RequiredByKeys<User, "name" | "unknown">, UserRequiredName>>
 ];
-
-export {};

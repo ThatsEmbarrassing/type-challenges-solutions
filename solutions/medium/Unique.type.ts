@@ -5,21 +5,19 @@
 */
 
 import type { Includes } from "@easy/Includes.type";
+import type { If } from "@easy/If.type";
 
-type Unique<
-  T extends [...unknown[]],
-  K extends [...unknown[]] = []
-> = T extends [infer F, ...infer L]
-  ? Includes<K, F> extends true
-    ? Unique<L, K>
-    : Unique<L, [...K, F]>
+export type Unique<
+  T extends [...U[]],
+  K extends [...U[]] = [],
+  U = unknown
+> = T extends [infer F extends U, ...infer L]
+  ? If<Includes<K, F>, Unique<L, K>, Unique<L, [...K, F]>>
   : K;
 
 // #=============================================
 
 import type { Equal, Expect } from "@type-challenges/utils";
-
-type a = Unique<[1, 1, 2, 2, 3, 3]>;
 
 type cases = [
   Expect<Equal<Unique<[1, 1, 2, 2, 3, 3]>, [1, 2, 3]>>,
@@ -38,5 +36,3 @@ type cases = [
     >
   >
 ];
-
-export {};

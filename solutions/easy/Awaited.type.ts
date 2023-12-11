@@ -10,11 +10,9 @@ interface Thenable<T> {
   then: (onfulfilled: OnFulfilled<T>) => unknown;
 }
 
-type _Awaited<T> = T extends Promise<infer P>
-  ? _Awaited<P>
-  : T extends Thenable<infer A>
-  ? A
-  : T;
+type PromiseOrThenable<T> = Promise<T> | Thenable<T>;
+
+type _Awaited<T> = T extends PromiseOrThenable<infer P> ? _Awaited<P> : T;
 
 // #=============================================
 

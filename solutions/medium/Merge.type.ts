@@ -4,8 +4,16 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/00599-medium-merge/README.md
 */
 
+import type { If } from "@easy/If.type";
+
+import type { Extends } from "@/utils";
+
 export type Merge<T extends object, L extends object> = {
-  [Key in keyof T | keyof L]: Key extends keyof L ? L[Key] : T[Key & keyof T];
+  [Key in keyof T | keyof L]: If<
+    Extends<Key, keyof L>,
+    L[Key & keyof L],
+    T[Key & keyof T]
+  >;
 };
 
 // #=============================================

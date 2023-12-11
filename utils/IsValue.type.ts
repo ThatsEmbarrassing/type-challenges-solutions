@@ -1,1 +1,4 @@
-export type IsValue<T, V> = T extends V & T ? false : true;
+import type { Extends } from "./Extends.type";
+import type { Not } from "./Not.type";
+
+export type IsValue<T, V> = Not<Extends<T, V & T>>;

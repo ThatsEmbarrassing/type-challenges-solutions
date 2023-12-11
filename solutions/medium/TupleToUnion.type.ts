@@ -4,7 +4,7 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/00010-medium-tuple-to-union/README.md
 */
 
-type TupleToUnion<T> = T extends [...(infer E)[]] ? E : unknown;
+export type TupleToUnion<T> = T extends [...(infer E)[]] ? E : unknown;
 
 // #=============================================
 

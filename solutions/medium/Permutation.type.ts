@@ -5,13 +5,15 @@
 */
 
 import type { Unshift } from "@easy/Unshift.type";
+import type { If } from "@easy/If.type";
+
 import type { IsNever } from "./IsNever.type";
 
-export type Permutation<T, K = T> = IsNever<T> extends true
-  ? []
-  : K extends K
+type PermutationItem<T, K> = K extends K
   ? Unshift<Permutation<Exclude<T, K>>, K>
   : never;
+
+export type Permutation<T, K = T> = If<IsNever<T>, [], PermutationItem<T, K>>;
 
 // #=============================================
 

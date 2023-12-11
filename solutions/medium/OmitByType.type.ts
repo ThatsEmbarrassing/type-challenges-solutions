@@ -4,8 +4,12 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/02852-medium-omitbytype/README.md
 */
 
+import type { If } from "@easy/If.type";
+
+import type { Extends } from "@/utils";
+
 type OmitByType<T extends object, V> = {
-  [Key in keyof T as T[Key] extends V ? never : Key]: T[Key];
+  [Key in keyof T as If<Extends<T[Key], V>, never, Key>]: T[Key];
 };
 
 // #=============================================

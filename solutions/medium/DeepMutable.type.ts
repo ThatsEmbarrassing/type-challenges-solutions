@@ -4,12 +4,18 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/17973-medium-deepmutable/README.md
 */
 
-type DeepMutable<T extends object | unknown[]> = {
-  -readonly [Key in keyof T]: T[Key] extends Function
-    ? T[Key]
-    : T[Key] extends object | unknown[]
-    ? DeepMutable<T[Key]>
-    : T[Key];
+import type { If } from "@easy/If.type";
+
+import type { Extends } from "@/utils";
+
+import type { Iterable } from "@/constants";
+
+type DeepMutable<T extends Iterable> = {
+  -readonly [Key in keyof T]: If<
+    Extends<T[Key], Function>,
+    T[Key],
+    If<Extends<T[Key], Iterable>, DeepMutable<T[Key] & {}>, T[Key]>
+  >;
 };
 
 // #=============================================

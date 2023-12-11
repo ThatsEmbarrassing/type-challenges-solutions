@@ -6,7 +6,9 @@
 
 import type { FunctionType } from "@/utils";
 
-type UnionToIntersection<T> = FunctionType<T> extends FunctionType<infer P>
+export type UnionToIntersection<T> = FunctionType<T> extends FunctionType<
+  infer P
+>
   ? P
   : never;
 
@@ -23,5 +25,3 @@ type cases = [
     >
   >
 ];
-
-export {};

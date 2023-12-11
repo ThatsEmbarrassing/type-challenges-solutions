@@ -4,9 +4,15 @@
     https://github.com/type-challenges/type-challenges/blob/main/questions/10969-medium-integer/README.md
 */
 
-type Integer<T extends number | bigint> = `${T}` extends `${bigint}`
-  ? T
-  : never;
+import type { If } from "@easy/If.type";
+
+import type { Extends } from "@/utils";
+
+type Integer<T extends number | bigint> = If<
+  Extends<`${T}`, `${bigint}`>,
+  T,
+  never
+>;
 
 // #=============================================
 

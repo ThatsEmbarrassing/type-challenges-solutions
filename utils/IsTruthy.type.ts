@@ -1,10 +1,9 @@
 import type { Truphy } from "@/constants";
 
-import type { ReverseBoolean } from "./ReverseBoolean.type";
+import type { Not } from "./Not.type";
+import type { IsZero } from "./IsZero.type";
 
-type IsZero<T extends number> = T extends 0 ? true : false;
-
-type IsTrythyNumber<T> = T extends number ? ReverseBoolean<IsZero<T>> : true;
+type IsTrythyNumber<T> = T extends number ? Not<IsZero<T>> : true;
 
 type IsTrythyObject<T> = T extends object
   ? [keyof T] extends [never]

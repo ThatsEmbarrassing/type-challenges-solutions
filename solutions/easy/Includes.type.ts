@@ -1,3 +1,5 @@
+import type { If } from "./If.type";
+
 import type { IsEqual } from "@/utils";
 
 /*
@@ -6,13 +8,8 @@ import type { IsEqual } from "@/utils";
     https://github.com/type-challenges/type-challenges/blob/main/questions/00898-easy-includes/README.md
 */
 
-export type Includes<T extends [...unknown[]], E> = T extends [
-  infer F,
-  ...infer L
-]
-  ? IsEqual<F, E> extends true
-    ? true
-    : Includes<L, E>
+export type Includes<T extends [...unknown[]], E> = T extends [infer F, ...infer L]
+  ? If<IsEqual<F, E>, true, Includes<L, E>>
   : false;
 
 // #=============================================
